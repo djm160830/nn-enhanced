@@ -1,0 +1,1 @@
+train/test ratio: 80% training, 20% testing
