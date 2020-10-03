@@ -1,8 +1,9 @@
 train/test ratio: 80% training, 20% testing
 <br>
-How to run code: python hw2.py
 <br>
-Expected outputs (sample output):
+How to run code: python hw2.py
+<br><br>
+Expected outputs (sample output):<br>
 After 60000 iterations, total error with sigmoid activation function: 3.841276401984211
 ACTIVATION: sigmoid
 Total Test error with sigmoid activation:                             8.414172716246473
