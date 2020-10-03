@@ -101,7 +101,6 @@ class NeuralNet:
     # Below is the training function. Added parameters for adam gd optimizer.
     def train(self, activation, max_iterations=60000, learning_rate=0.001, epsilon=10**(-8), beta_1=0.9, beta_2=0.999, \
         m1=0, m2=0, m3=0, m4=0, v1=0, v2=0, v3=0, v4=0):
-        print(f'ACTIVATION: {activation}')
         for iteration in range(max_iterations):
             out = self.forward_pass(activation=activation)
             error = 0.5 * np.power((out - self.y), 2)
@@ -211,7 +210,6 @@ class NeuralNet:
         self.X = self.preprocess(xtest=self.test_dataset.iloc[:, 0:(ncols -1)].values.reshape(nrows, ncols-1))
         self.y = self.test_dataset.iloc[:, (ncols-1)].values.reshape(nrows, 1)
 
-        print(f'ACTIVATION: {activation}')
         out = self.forward_pass(activation=activation)
         error = 0.5 * np.power((out - self.y), 2)
         # TODO: obtain prediction on self.test_dataset
