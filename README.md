@@ -1,7 +1,8 @@
 train/test ratio: 80% training, 20% testing
 <br>
 <br>
-How to run code: python hw2.py
+# How to run 
+`python nn-enhanced.py`
 <br><br>
 Expected outputs (sample output):<br>
 After 60000 iterations, total error with sigmoid activation function: 3.841276401984211
