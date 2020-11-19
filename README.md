@@ -17,4 +17,5 @@ ACTIVATION: relu
 
 After 60000 iterations, total error with relu activation function: 8.424554943130456
 ACTIVATION: relu
-Total Test error with relu activation:                             7.2460576025569505```
+Total Test error with relu activation:                             7.2460576025569505
+```
