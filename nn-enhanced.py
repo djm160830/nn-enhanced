@@ -1,8 +1,3 @@
-# NAME:     Darla Maneja
-# EMAIL:    djm160830@utdallas.edu
-# SECTION:  CS4372.001
-# Assignment 2 nn-enhanced
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -14,13 +9,10 @@ import pdb
 
 class NeuralNet:
     def __init__(self, dataFile, header=True, h=4):
-        #np.random.seed(1)
-        # train refers to the training dataset
-        # test refers to the testing dataset
+        # np.random.seed(1)
         # h represents the number of neurons in the hidden layer
         self.scaler = MinMaxScaler()
         raw_input = pd.read_csv(dataFile)
-        # TODO: Remember to implement the preprocess method
         processed_data = self.preprocess(raw=raw_input)
         self.train_dataset, self.test_dataset = train_test_split(processed_data, test_size=.20, random_state=0)
         ncols = len(self.train_dataset.columns)
@@ -28,9 +20,7 @@ class NeuralNet:
         self.X = self.preprocess(x=self.train_dataset.iloc[:, 0:(ncols -1)].values.reshape(nrows, ncols-1))
         self.y = y=self.train_dataset.iloc[:, (ncols-1)].values.reshape(nrows, 1)
 
-        #
         # Find number of input and output layers from the dataset
-        #
         input_layer_size = len(self.X[1])
         if not isinstance(self.y[0], np.ndarray):
             self.output_layer_size = 1
@@ -50,9 +40,7 @@ class NeuralNet:
         self.h = h
 
 
-    """
-    TODO: preprocess() - Preprocesses the data by dropping outliers, normalization
-    """
+    # Preprocesses the data by dropping outliers, normalization
     def preprocess(self, **kwargs):
         d = kwargs.get('raw', pd.DataFrame())
         x = kwargs.get('x', np.array([]))
@@ -84,7 +72,6 @@ class NeuralNet:
         return np.maximum(x, 0)
 
     # derivative of sigmoid function, indicates confidence about existing weight
-
     def __sigmoid_derivative(self, x):
         return x * (1 - x)
 
@@ -98,14 +85,13 @@ class NeuralNet:
 
 
 
-    # Below is the training function. Added parameters for adam gd optimizer.
+    # Training function with added parameters for adam gd optimizer.
     def train(self, activation, max_iterations=60000, learning_rate=0.001, epsilon=10**(-8), beta_1=0.9, beta_2=0.999, \
         m1=0, m2=0, m3=0, m4=0, v1=0, v2=0, v3=0, v4=0):
         for iteration in range(max_iterations):
             out = self.forward_pass(activation=activation)
             error = 0.5 * np.power((out - self.y), 2)
 
-            # TODO: I have coded the sigmoid activation, you have to do the rest
             self.backward_pass(out, activation=activation)
 
             # ADAM GRADIENT DESCENT OPTIMIZER
@@ -154,9 +140,9 @@ class NeuralNet:
         print(f'\nAfter {str(max_iterations)} iterations, total error with {activation} activation function: {str(np.sum(error))}')
 
     def forward_pass(self, activation):
-        # pass our inputs through our neural network
+        # pass inputs through neural network
         in_hidden = np.dot(self.X, self.W_hidden) + self.Wb_hidden
-        # TODO: I have coded the sigmoid activation, you have to do the rest
+
         if activation == "sigmoid":
             self.X_hidden = self.__sigmoid(in_hidden)
         elif activation == "tanh":
@@ -174,12 +160,11 @@ class NeuralNet:
         return out
 
     def backward_pass(self, out, activation):
-        # pass our inputs through our neural network
+        # pass inputs through our neural network
         self.compute_output_delta(out, activation)
         self.compute_hidden_delta(activation)
 
-    # TODO: Implement other activation functions
-
+    # Activation functions
     def compute_output_delta(self, out, activation):
         if activation == "sigmoid":
             delta_output = (self.y - out) * (self.__sigmoid_derivative(out))
@@ -200,10 +185,7 @@ class NeuralNet:
 
         self.deltaHidden = delta_hidden_layer
 
-    # TODO: Implement the predict function for applying the trained model on the  test dataset.
-    # You can assume that the test dataset has the same format as the training dataset
-    # You have to output the test error from this function
-
+    # predict function for applying the trained model on test dataset, and return test error
     def predict(self, activation, header = True):
         ncols = len(self.test_dataset.columns)
         nrows = len(self.test_dataset.index)
@@ -222,7 +204,6 @@ class NeuralNet:
 
 if __name__ == "__main__":
     # perform pre-processing of both training and test part of the test_dataset
-    # split into train and test parts if needed
     neural_network = NeuralNet("https://raw.githubusercontent.com/djm160830/nn-enhanced/master/heart_failure_clinical_records_dataset.csv?token=AJHKVR77C5RZXKFWYJT5UC27P53DC")
     neural_network.train(activation="sigmoid")
     testError = neural_network.predict(activation="sigmoid")
