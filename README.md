@@ -1,13 +1,11 @@
 train/test ratio: 80% training, 20% testing
-<br>
-<br>
+
 # How to run 
 #### Install requirements  
-`pip install -r requirements.txt`
-`python nn-enhanced.py`
-<br><br>
-Expected outputs (sample output):<br>
-After 60000 iterations, total error with sigmoid activation function: 3.841276401984211
+`pip install -r requirements.txt`  
+`python nn-enhanced.py`  
+## Expected outputs (sample output):  
+```After 60000 iterations, total error with sigmoid activation function: 3.841276401984211
 ACTIVATION: sigmoid
 Total Test error with sigmoid activation:                             8.414172716246473
 ACTIVATION: tanh
@@ -19,4 +17,4 @@ ACTIVATION: relu
 
 After 60000 iterations, total error with relu activation function: 8.424554943130456
 ACTIVATION: relu
-Total Test error with relu activation:                             7.2460576025569505
+Total Test error with relu activation:                             7.2460576025569505```
