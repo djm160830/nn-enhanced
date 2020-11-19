@@ -2,6 +2,8 @@ train/test ratio: 80% training, 20% testing
 <br>
 <br>
 # How to run 
+#### Install requirements  
+`pip install -r requirements.txt`
 `python nn-enhanced.py`
 <br><br>
 Expected outputs (sample output):<br>
